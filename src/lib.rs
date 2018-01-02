@@ -2,8 +2,8 @@
 extern crate test;
 extern crate rand;
 
-
 use std::fmt;
+
 #[derive(Debug, Clone, PartialEq)]
 pub struct Arc {
     pub to: u64,
@@ -216,10 +216,10 @@ mod bench {
     use test::Bencher;
     use rand;
     use super::*;
+
     static SMALL_NODES: i64 = 16;
     static MEDIUM_NODES: i64 = 256;
     static LARGE_NODES: i64 = 1024;
-
 
     #[bench]
     fn a_small_export_1(b: &mut Bencher) {
