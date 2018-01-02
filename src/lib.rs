@@ -195,6 +195,19 @@ impl Graph {
     pub fn export6(&self) -> String {
         return self.str();
     }
+
+    pub fn export7(&self) -> String {
+        let mut final_str: String = String::new();
+        for v in &self.verticies {
+            let mut s = format!("{}", v.id);
+            for a in &v.arcs {
+                s.push_str(&format!(" {},{}", a.to, a.distance));
+            }
+            final_str.push_str(&s);
+            final_str.push_str("\r\n");
+        }
+        return final_str;
+    }
 }
 
 #[cfg(test)]
@@ -290,6 +303,21 @@ mod bench {
         bench_n_i(2, 6, b);
     }
 
+    #[bench]
+    fn a_small_export_7(b: &mut Bencher) {
+        bench_n_i(0, 7, b);
+    }
+    #[bench]
+    fn b_med_export_7(b: &mut Bencher) {
+        bench_n_i(1, 7, b);
+    }
+    #[bench]
+    fn c_large_export_7(b: &mut Bencher) {
+        bench_n_i(2, 7, b);
+    }
+
+
+
     fn bench_n_i(size: i64, export: i64, b: &mut Bencher) {
         //setup();
         let mut g: Graph;
@@ -306,6 +334,7 @@ mod bench {
             4 => b.iter(|| g.export4()),
             5 => b.iter(|| g.export5()),
             6 => b.iter(|| g.export6()),
+            7 => b.iter(|| g.export7()),
             _ => panic!("wtf!"),
         }
     }
