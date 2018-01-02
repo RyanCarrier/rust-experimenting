@@ -1,0 +1,8 @@
+[package]
+name = "experimenting"
+version = "0.1.0"
+authors = ["Ryan Carrier <ryan.j.carrier@gmail.com>"]
+
+[dependencies]
+dijkstrust = { path = "../dijkstrust" }
+rand = "0.3.18"
